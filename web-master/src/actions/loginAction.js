@@ -22,41 +22,28 @@ export const loginRequest = (user) => {
 
     return dispatch =>{
         const userPo = {
-            'userId':user.username,
-            'pwd':user.password
+            userId:user.username,
+            pwd:user.password
         }
-     
-        return axios.post("http://localhost:3000/login",userPo).then(
+        const me = {
+            id: user.username,
+            avatar: '//game.gtimg.cn/images/lol/act/a20201103lmpwjl/icon-ht.png',
+            nickname: user.username,
+            desc: '个人简介',
+        }
+        //http://101.34.221.238:8080/login
+        return axios.post("http://localhost:3030/login",userPo).then(
             res =>{
-            let data = res.data;
+            const data = res.data;
             if(data.code==1){
                 const err = {
                     msg:data.msg
-                   
                 }
-                console.log('错误');
-                console.log(data)
                 throw  err;
             }
-            const list = data.list;
-         
-
-            const me = {
-                id: list.userId,
-                avatar: list.avatar,
-                nickname: user.username,
-                desc: '没个性，怎签名',
-            }
-            console.log('me: '+me);
-
              localStorage.setItem("user",user)
             // setAuthorizationToken(token)
             dispatch(setCurrentInfo(me))
-        },
-
-
-        
-        
-        )
+        })
     }
 }

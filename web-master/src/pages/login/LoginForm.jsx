@@ -21,19 +21,20 @@ class LoginForm extends React.Component{
     }
     onSubmit = (e) =>{
         e.preventDefault();
-        console.log('发送前'+this.state); 
         this.props.loginRequest(this.state).then(
          (res) =>{
              console.log('成功')
              this.props.history.push("/chat")
          },
          (err) =>{
-            console.log('失败'+err);
+            console.log('失败'+err.msg);
          }
 
         );
-        
-        console.log('发送后'+this.state); 
+            
+          
+           
+        console.log('发送'+this.state); 
     }
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })

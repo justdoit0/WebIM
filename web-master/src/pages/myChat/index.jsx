@@ -42,7 +42,7 @@ class MyChat extends React.Component{
         if(!this.state.isEnd){
         this.setState(
             {    isEnd:true,
-                 friends: this.props.friends.friend
+                friends: this.props.friends.friend
             }
         );
         }
@@ -123,8 +123,8 @@ class MyChat extends React.Component{
 }
 
 const mapStateToProps = (state) =>{
-     
-    console.log('mapStateToProps: state为'+state);
+
+    console.log(state);
     return{
         friends:state.friends,
         user:state.login.user
